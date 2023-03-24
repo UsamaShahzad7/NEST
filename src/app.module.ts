@@ -13,6 +13,7 @@ import { AuthService } from './auth/auth.service';
 import { LocalStrategy } from './auth/local.strategy';
 import { JwtModule } from '@nestjs/jwt/dist';
 import { Posts } from './typeorm/entities/post';
+import { PostsModule } from './posts/posts.module';
 @Module({
   imports: [TypeOrmModule.forRoot({
       type: 'mysql',
@@ -23,7 +24,7 @@ import { Posts } from './typeorm/entities/post';
       database: 'nest',
       entities: [User,Profile,Posts],
       synchronize: true,
-  }), UsersModule, ProfileModule,ConfigModule.forRoot({isGlobal:true}),AuthModule,PassportModule,JwtModule],//{envFilePath:'../env'}
+  }), UsersModule, ProfileModule,ConfigModule.forRoot({isGlobal:true}),AuthModule,PassportModule,JwtModule, PostsModule],//{envFilePath:'../env'}
   controllers: [AppController],
   providers: [AppService,AuthService,LocalStrategy],
 })

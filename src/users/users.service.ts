@@ -31,10 +31,11 @@ export class UsersService {
         const hashPass=await bcrypt.hash(password,salt);
         password=hashPass;
         const newUser=this.userRepository.create({email,password,createdAt:new Date()})
-        const id=newUser.id;
+        
         try{
             const saveUser=await this.userRepository.save(newUser);
-            return {"Created at":email};
+            const id=saveUser.id;
+            return id;
         }catch(error)
         {
             return {"Error while creating a user: ":error.sqlMessage};

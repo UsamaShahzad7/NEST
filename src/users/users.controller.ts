@@ -15,9 +15,11 @@ export class UsersController {
     @UseGuards(JwtAuthGaurd)
     @Get()
     getUsers(){
-        return this.userService.getUsers();
+        const result=this.userService.getUsers();
+        return result;
     }
 
+    //@UseGuards(JwtAuthGaurd)
     @Get(":email")
     getUserByEmail(@Param("email") email:string)
     {   
@@ -41,7 +43,7 @@ export class UsersController {
     async createUsers(@Body() Dto:CreateUserDto){
         const data=await this.userService.createUsers(Dto)
         console.log(data);
-        return data;   
+        return `profile/${data}`;
     }
 
     @Patch(":id")

@@ -7,6 +7,9 @@ import { Profile } from "./profile";
 export class Posts{
     @PrimaryGeneratedColumn()
     id:string
+    
+    @Column()
+    imageName:string
 
     @Column()
     createdAt:Date

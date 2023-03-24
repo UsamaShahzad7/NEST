@@ -1,5 +1,6 @@
 import { Controller, ParseIntPipe } from '@nestjs/common';
-import { Body, Param, Post } from '@nestjs/common/decorators';
+import { Body, Get, Param, Post, UseGuards } from '@nestjs/common/decorators';
+import { JwtAuthGaurd } from 'src/auth/jwt-auth.gaurd';
 import { createProfile } from './dto/createProfile.dto';
 import { ProfileService } from './profile.service';
 
@@ -7,7 +8,9 @@ import { ProfileService } from './profile.service';
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
   
-  @Post(":id")
+
+  //@UseGuards(JwtAuthGaurd)
+  @Get(":id")
   async createProfile(@Param("id",ParseIntPipe) id:number, @Body() createProfileDto:createProfile){
       
       const result=await this.profileService.createProfile(id,createProfileDto);
