@@ -14,6 +14,7 @@ import { LocalStrategy } from './auth/local.strategy';
 import { JwtModule } from '@nestjs/jwt/dist';
 import { Posts } from './typeorm/entities/post';
 import { PostsModule } from './posts/posts.module';
+import { Images } from './typeorm/entities/image';
 @Module({
   imports: [TypeOrmModule.forRoot({
       type: 'mysql',
@@ -22,7 +23,7 @@ import { PostsModule } from './posts/posts.module';
       username: 'root',
       password: 'root',
       database: 'nest',
-      entities: [User,Profile,Posts],
+      entities: [User,Profile,Posts,Images],
       synchronize: true,
   }), UsersModule, ProfileModule,ConfigModule.forRoot({isGlobal:true}),AuthModule,PassportModule,JwtModule, PostsModule],//{envFilePath:'../env'}
   controllers: [AppController],
