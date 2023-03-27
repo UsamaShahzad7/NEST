@@ -15,6 +15,7 @@ export class FileUploadService{
         },
         region:process.env.BUCKET_REGION
       })
+      
        const params={
             Bucket: process.env.BUCKET_NAME,
             Body:dataBuffer,
@@ -23,7 +24,8 @@ export class FileUploadService{
         const command=new aws.PutObjectCommand(params);
         try{
             const data=await s3Bucket.send(command);
-            return data;
+            const uniqueName=`${uuid()}-${fileName}`;
+            return uniqueName;
         }catch(error)
         {
             return error;

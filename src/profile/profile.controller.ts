@@ -10,7 +10,7 @@ export class ProfileController {
   
 
   //@UseGuards(JwtAuthGaurd)
-  @Get(":id")
+  @Post(":id")
   async createProfile(@Param("id",ParseIntPipe) id:number, @Body() createProfileDto:createProfile){
       
       const result=await this.profileService.createProfile(id,createProfileDto);

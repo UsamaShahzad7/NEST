@@ -1,16 +1,16 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Posts } from "./post";
+// import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+// import { Posts } from "./post";
 
 
 
-@Entity('images')
-export class Images{
-    @PrimaryGeneratedColumn()
-    id:string
+// @Entity('images')
+// export class Images{
+//     @PrimaryGeneratedColumn()
+//     id:string
 
-    @Column()
-    name:string
+//     @Column()
+//     name:string
 
-    @ManyToOne(()=>Posts)
-    posts:Posts
-}
+//     @ManyToOne(()=>Posts)
+//     posts:Posts
+// }

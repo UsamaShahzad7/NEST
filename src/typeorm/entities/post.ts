@@ -13,6 +13,8 @@ export class Posts{
 
     @Column()
     Caption:string
+    @Column()
+    ImageName:string
 
     @ManyToOne(()=>Profile)
     profile:Profile
