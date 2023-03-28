@@ -2,20 +2,15 @@
 import { Injectable } from "@nestjs/common";
 import { uuid } from "uuidv4";
 import * as aws from '@aws-sdk/client-s3'
+import { s3Bucket } from "./s3Bucket";
 @Injectable()
 export class FileUploadService{
 
-    constructor(){}
+    constructor(private readonly s3BucketConfig:s3Bucket){}
     async uploadFile(dataBuffer:Buffer,fileName:String)
     {
-      const s3Bucket=new aws.S3({
-        credentials:{
-            accessKeyId:process.env.AWS_ACCESS_KEY,
-            secretAccessKey:process.env.AWS_PASSWORD,
-        },
-        region:process.env.BUCKET_REGION
-      })
       
+        const s3Bucket=this.s3BucketConfig.s3Bucket();
        const params={
             Bucket: process.env.BUCKET_NAME,
             Body:dataBuffer,

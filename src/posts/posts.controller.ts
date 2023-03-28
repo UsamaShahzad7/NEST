@@ -10,6 +10,7 @@ import { Posts } from 'src/typeorm/entities/post';
 import { Repository } from 'typeorm';
 import { ApiConsumes } from '@nestjs/swagger';
 
+
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
@@ -24,10 +25,11 @@ export class PostsController {
     return this.postsService.upload(id,file.buffer,file.originalname,dto.Caption);
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.postsService.findAll();
-  // }
+  @Get(":id")
+  async showFiles(@Param("id",ParseIntPipe) id:number)
+  { 
+      return await this.postsService.show(id);
+  }
 
   // @Get(':id')
   // findOne(@Param('id') id: string) {
